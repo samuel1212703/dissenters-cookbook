@@ -1,0 +1,8 @@
+{
+  "name": "Dissenters Cookbook",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "id": "2c2bfb0d"
+}

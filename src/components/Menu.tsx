@@ -11,53 +11,91 @@ import {
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { flashOutline, flashSharp, hammerOutline, hammerSharp, personOutline, personSharp } from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
-  url: string;
   iosIcon: string;
   mdIcon: string;
+  title: string;
+  subPages: SubPage[];
+}
+
+interface SubPage {
+  url: string;
   title: string;
 }
 
 const appPages: AppPage[] = [
   {
-    title: 'Inbox',
-    url: '/folder/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
+    title: 'Dissenter',
+    iosIcon: personOutline,
+    mdIcon: personSharp,
+    subPages: [
+      {
+        title: 'Profile',
+        url: '/folder/Profile',
+      },
+      {
+        title: 'Saved',
+        url: '/folder/Saved',
+      },
+    ],
   },
   {
-    title: 'Outbox',
-    url: '/folder/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp
+    title: 'Narcotics',
+    iosIcon: flashOutline,
+    mdIcon: flashSharp,
+    subPages: [
+      {
+        title: 'Cannabis',
+        url: '/folder/Cannabis',
+      },
+      {
+        title: 'Depressants',
+        url: '/folder/Depressants',
+      },
+      {
+        title: 'Hallucinogens',
+        url: '/folder/Hallucinogens',
+      },
+      {
+        title: 'Opioids',
+        url: '/folder/Opioids',
+      },
+      {
+        title: 'Stimulants',
+        url: '/folder/Stimulants',
+      },
+    ]
   },
   {
-    title: 'Favorites',
-    url: '/folder/Favorites',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp
+    title: 'Weaponry',
+    iosIcon: hammerOutline,
+    mdIcon: hammerSharp,
+    subPages: [
+      {
+        title: 'Chemical',
+        url: '/folder/Chemical',
+      },
+      {
+        title: 'Firearms',
+        url: '/folder/Firearms',
+      },
+      {
+        title: 'Melee',
+        url: '/folder/Melee',
+      },
+      {
+        title: 'Long-range',
+        url: '/folder/LongRanged',
+      },
+      {
+        title: 'Short-range',
+        url: '/folder/ShortRanged',
+      },
+    ],
   },
-  {
-    title: 'Archived',
-    url: '/folder/Archived',
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp
-  },
-  {
-    title: 'Trash',
-    url: '/folder/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
-  },
-  {
-    title: 'Spam',
-    url: '/folder/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
-  }
 ];
 
 const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
@@ -69,28 +107,26 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
-          {appPages.map((appPage, index) => {
+          <IonListHeader>Dissenters Cookbook</IonListHeader>
+          <IonNote>Everybody owns Everything</IonNote>
+          {appPages.map((appPage) => {
             return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon aria-hidden="true" slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
-                  <IonLabel>{appPage.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
+              <div key={appPage.title}>
+                <h4><IonIcon aria-hidden="true" slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} /> {appPage.title}</h4>
+                <IonList>
+                  {appPage.subPages.map((subPage, index) => {
+                    return (
+                      <IonMenuToggle key={index} autoHide={false}>
+                        <IonItem className={location.pathname === subPage.url ? 'selected' : ''} routerLink={subPage.url} routerDirection="none" lines="none" detail={false}>
+                          <IonLabel>{subPage.title}</IonLabel>
+                        </IonItem>
+                      </IonMenuToggle>
+                    )
+                  })}
+                </IonList>
+              </div>
             );
           })}
-        </IonList>
-
-        <IonList id="labels-list">
-          <IonListHeader>Labels</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon aria-hidden="true" slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
-          ))}
         </IonList>
       </IonContent>
     </IonMenu>

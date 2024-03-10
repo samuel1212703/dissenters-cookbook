@@ -1,0 +1,24 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/folder/Dissenter",
+      "type": 301
+    }
+  ],
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

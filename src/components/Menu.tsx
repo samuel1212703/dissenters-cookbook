@@ -1,16 +1,17 @@
 import {
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonMenu,
-  IonMenuToggle,
-  IonNote,
+	IonContent,
+	IonIcon,
+	IonItem,
+	IonLabel,
+	IonList,
+	IonListHeader,
+	IonMenu,
+	IonMenuToggle,
+	IonNote,
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
+<<<<<<< Updated upstream
 import { flashOutline, flashSharp, hammerOutline, hammerSharp, personOutline, personSharp } from 'ionicons/icons';
 import './Menu.css';
 
@@ -96,13 +97,82 @@ const appPages: AppPage[] = [
       },
     ],
   },
+=======
+import {
+	bookOutline,
+	bookSharp,
+	sunnyOutline,
+	sunnySharp,
+	eyeOutline,
+	eyeSharp,
+	leafOutline,
+	leafSharp,
+	iceCreamOutline,
+	iceCreamSharp,
+	invertModeOutline,
+	invertModeSharp,
+	heartOutline,
+	heartSharp,
+} from 'ionicons/icons';
+import './Menu.css';
+
+interface AppPage {
+	url: string;
+	iosIcon: string;
+	mdIcon: string;
+	title: string;
+}
+
+const appPages: AppPage[] = [
+	{
+		title: 'Cookbook',
+		url: '/folder/Cookbook',
+		iosIcon: bookOutline,
+		mdIcon: bookSharp,
+	},
+	{
+		title: 'Cannabis',
+		url: '/folder/Cannabis',
+		iosIcon: leafOutline,
+		mdIcon: leafSharp,
+	},
+	{
+		title: 'Depressants',
+		url: '/folder/Depressants',
+		iosIcon: iceCreamOutline,
+		mdIcon: iceCreamSharp,
+	},
+	{
+		title: 'Hallucinogens',
+		url: '/folder/Hallucinogens',
+		iosIcon: eyeOutline,
+		mdIcon: eyeSharp,
+	},
+	{
+		title: 'Inhalants',
+		url: '/folder/Inhalants',
+		iosIcon: sunnyOutline,
+		mdIcon: sunnySharp,
+	},
+	{
+		title: 'Opiods',
+		url: '/folder/Opiods',
+		iosIcon: invertModeOutline,
+		mdIcon: invertModeSharp,
+	},
+	{
+		title: 'Stimulants',
+		url: '/folder/Stimulants',
+		iosIcon: heartOutline,
+		mdIcon: heartSharp,
+	},
+>>>>>>> Stashed changes
 ];
 
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
 const Menu: React.FC = () => {
-  const location = useLocation();
+	const location = useLocation();
 
+<<<<<<< Updated upstream
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
@@ -131,6 +201,41 @@ const Menu: React.FC = () => {
       </IonContent>
     </IonMenu>
   );
+=======
+	return (
+		<IonMenu contentId='main' type='overlay'>
+			<IonContent>
+				<IonList id='inbox-list'>
+					<IonListHeader>Dissenter's Cookbook</IonListHeader>
+					<IonNote>Knowledge</IonNote>
+					{appPages.map((appPage, index) => {
+						return (
+							<IonMenuToggle key={index} autoHide={false}>
+								<IonItem
+									className={
+										location.pathname === appPage.url ? 'selected' : ''
+									}
+									routerLink={appPage.url}
+									routerDirection='none'
+									lines='none'
+									detail={false}
+								>
+									<IonIcon
+										aria-hidden='true'
+										slot='start'
+										ios={appPage.iosIcon}
+										md={appPage.mdIcon}
+									/>
+									<IonLabel>{appPage.title}</IonLabel>
+								</IonItem>
+							</IonMenuToggle>
+						);
+					})}
+				</IonList>
+			</IonContent>
+		</IonMenu>
+	);
+>>>>>>> Stashed changes
 };
 
 export default Menu;

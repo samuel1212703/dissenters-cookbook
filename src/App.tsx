@@ -1,4 +1,9 @@
-import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
+import {
+	IonApp,
+	IonRouterOutlet,
+	IonSplitPane,
+	setupIonicReact,
+} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
@@ -27,6 +32,7 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App: React.FC = () => {
+<<<<<<< Updated upstream
   return (
     <IonApp>
       <IonReactRouter>
@@ -47,6 +53,25 @@ const App: React.FC = () => {
       </IonReactRouter>
     </IonApp>
   );
+=======
+	return (
+		<IonApp>
+			<IonReactRouter>
+				<IonSplitPane contentId='main'>
+					<Menu />
+					<IonRouterOutlet placeholder id='main'>
+						<Route path='/' exact={true}>
+							<Redirect to='/folder/Cookbook' />
+						</Route>
+						<Route path='/folder/:name' exact={true}>
+							<Page />
+						</Route>
+					</IonRouterOutlet>
+				</IonSplitPane>
+			</IonReactRouter>
+		</IonApp>
+	);
+>>>>>>> Stashed changes
 };
 
 export default App;
